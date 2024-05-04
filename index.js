@@ -6,13 +6,15 @@ const User = require("./model/UserModel");
 const { successResponse } = require("./response");
 const userRouter = require("./router/userRouter");
 
-const app = express();
-const PORT = process.env.SERVER_PORT || 5000;
 
-app.use(express.json());
-
-app.use(cors());
 require("dotenv").config();
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+await connectDatabase();
+
+const PORT = process.env.SERVER_PORT || 5000;
 
 app.get("/", (req, res) => {
   res.send("Hello! From MERN stack Server!");
@@ -23,5 +25,4 @@ app.use("/api/users", userRouter);
 
 app.listen(PORT, async () => {
   console.log(`server is running at http://localhost:${PORT}`);
-  await connectDatabase();
 });
