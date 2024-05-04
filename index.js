@@ -23,6 +23,6 @@ app.get("/", (req, res) => {
 // Define POST endpoint to create a user
 app.use("/api/users", userRouter);
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log(`server is running at http://localhost:${PORT}`);
 });
