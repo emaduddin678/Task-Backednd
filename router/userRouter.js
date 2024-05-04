@@ -4,6 +4,8 @@ const {
   handleGetUserById,
   handleGetUsers,
   handleGetUserByEmail,
+  handleGetUserByPhone,
+  handleGetUser,
 } = require("../controller/userController");
 
 
@@ -17,6 +19,12 @@ userRouter.get("/", handleGetUsers);
 
 // get a single user route: /api/users/:id
 userRouter.get("/:id([0-9a-fA-F]{24})", handleGetUserById);
-userRouter.get("/:email", handleGetUserByEmail);
+
+// finding user by email or phone with differnet route 
+userRouter.get("/email/:email", handleGetUserByEmail);
+userRouter.get("/phone/:phone", handleGetUserByPhone);
+
+// finding user by email or phone with same route
+userRouter.get("/:value", handleGetUser); 
 
 module.exports = userRouter;
